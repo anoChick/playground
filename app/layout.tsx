@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#ffffff" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
