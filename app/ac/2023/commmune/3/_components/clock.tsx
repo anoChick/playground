@@ -2,15 +2,25 @@
 import dayjs from "dayjs";
 import { useEffect, useRef, useState } from "react";
 import satori from "satori";
+import { createIntlSegmenterPolyfill } from "intl-segmenter-polyfill";
 
 export const Clock = () => {
   const fontDataRef = useRef<ArrayBuffer | null>(null);
   const [svg, setSVG] = useState<string | null>(null);
 
-  const getFontData = async () => {
-    const response = await fetch(`/Roboto-Regular.ttf`);
-    const data = await response.arrayBuffer();
-    fontDataRef.current = data;
+  const init = async () => {
+    const [font, Segmenter] = await Promise.all([
+      fetch("/Roboto-Regular.ttf").then((res) => res.arrayBuffer()),
+      !globalThis.Intl || !globalThis.Intl.Segmenter
+        ? createIntlSegmenterPolyfill(fetch("/break_iterator.wasm"))
+        : null,
+    ]);
+    if (Segmenter) {
+      globalThis.Intl = globalThis.Intl || {};
+      (globalThis.Intl as any).Segmenter = Segmenter;
+    }
+
+    fontDataRef.current = font;
   };
   const renderSatori = async (data: ArrayBuffer) => {
     const svg = await satori(
@@ -84,7 +94,7 @@ export const Clock = () => {
   }, []);
 
   useEffect(() => {
-    getFontData();
+    init();
   }, []);
 
   if (!svg) {
