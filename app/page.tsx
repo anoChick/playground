@@ -19,6 +19,11 @@ export default function Home() {
           favicon clock
         </Link>
       </div>
+      <div>
+        <Link href="/webpush" className="text-blue-400">
+          webpush
+        </Link>
+      </div>
     </main>
   );
 }
