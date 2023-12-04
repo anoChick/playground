@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 export const PWAInstallation = () => {
   const deferredPromptRef = useRef<any>(null);
   const [ready, setReady] = useState(false);
+  const [installedApps, setInstalledApps] = useState([]);
+
   const [installedByRelatedApps, setInstalledByRelatedApps] = useState(false);
   const [
     installCompletedByAppInstalledEvent,
@@ -13,8 +15,10 @@ export const PWAInstallation = () => {
 
   const checkIsInstalled = async () => {
     const nav = navigator as any;
-    if (nav.getInstalledRelatedApps) {
+    if ("getInstalledRelatedApps" in nav) {
       const apps = await nav.getInstalledRelatedApps();
+      console.log(apps);
+      setInstalledApps(apps);
       setInstalledByRelatedApps(apps.length !== 0);
     }
   };
@@ -60,6 +64,8 @@ export const PWAInstallation = () => {
           ? "インストール済"
           : "未インストール"}
       </div>
+      installedByRelatedApps:
+      <div className="border p-2">{JSON.stringify(installedApps)}</div>
       <button
         className={`p-2 m-2  text-white rounded ${
           ready ? "bg-blue-400" : "bg-gray-300"

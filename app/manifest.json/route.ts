@@ -17,9 +17,11 @@ export async function GET() {
     categories: ["playground", "technology"],
     description: "あのちっくが実験的なことをする場所です。",
     display: "standalone",
-    prefer_related_applications: false,
     related_applications: [
-      { url: "https://pg.anochick.com//manifest.json", platform: "webapp" },
+      {
+        platform: "webapp",
+        url: "https://gira-same-domain.glitch.me/pwa/manifest.json",
+      },
     ],
     icons: [
       {
