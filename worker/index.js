@@ -25,7 +25,7 @@ self.addEventListener("push", (event) => {
   }
 
   const options = {
-    body: `type:${type}; ${data.body}`,
+    body: `type:${type}; ${title}`,
     icon: "https://pg.anochick.com/icon512.png",
     badge:
       type === "action" ? "https://pg.anochick.com/icons/heart.png" : undefined,
