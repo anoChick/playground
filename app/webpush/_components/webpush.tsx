@@ -83,10 +83,34 @@ export const WebPush = () => {
     await push(
       JSON.stringify({
         subscription,
+        type: "basic",
       })
     );
   };
-
+  const sendActionNotificationButtonOnClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if (!subscription) return;
+    await push(
+      JSON.stringify({
+        subscription,
+        type: "action",
+      })
+    );
+  };
+  const sendReplyNotificationButtonOnClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    if (!subscription) return;
+    await push(
+      JSON.stringify({
+        subscription,
+        type: "reply",
+      })
+    );
+  };
   return (
     <div className="">
       <h1>web push</h1>
@@ -116,6 +140,24 @@ export const WebPush = () => {
         disabled={!isSubscribed}
       >
         Send Notification
+      </button>{" "}
+      <button
+        className={`p-2 m-2  text-white rounded ${
+          !isSubscribed ? "bg-gray-300" : "bg-blue-400"
+        }`}
+        onClick={sendActionNotificationButtonOnClick}
+        disabled={!isSubscribed}
+      >
+        Send Action Notification
+      </button>
+      <button
+        className={`p-2 m-2  text-white rounded ${
+          !isSubscribed ? "bg-gray-300" : "bg-blue-400"
+        }`}
+        onClick={sendReplyNotificationButtonOnClick}
+        disabled={!isSubscribed}
+      >
+        Send Reply Notification
       </button>
     </div>
   );

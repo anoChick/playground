@@ -2,7 +2,9 @@
 import webpush from "web-push";
 
 export async function push(data: any) {
-  const subscription = JSON.parse(data)?.subscription;
+  const dataObj = JSON.parse(data);
+  const subscription = dataObj?.subscription;
+  const type = dataObj?.type;
 
   const options = {
     vapidDetails: {
@@ -14,7 +16,7 @@ export async function push(data: any) {
 
   webpush.sendNotification(
     subscription,
-    JSON.stringify({ title: "通知しました." }),
+    JSON.stringify({ title: "通知しました.", type }),
     options
   );
 
