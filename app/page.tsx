@@ -29,6 +29,11 @@ export default function Home() {
           PWA Badge
         </Link>
       </div>
+      <div>
+        <Link href="/pwainstallation" className="text-blue-400">
+          PWA Installation
+        </Link>
+      </div>
     </main>
   );
 }
