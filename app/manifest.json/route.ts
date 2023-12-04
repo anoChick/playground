@@ -19,7 +19,7 @@ export async function GET() {
     display: "standalone",
     prefer_related_applications: false,
     related_applications: [
-      { url: "https://pg.anochick.com/", platform: "webapp" },
+      { url: "https://pg.anochick.com//manifest.json", platform: "webapp" },
     ],
     icons: [
       {
