@@ -24,6 +24,11 @@ export default function Home() {
           webpush
         </Link>
       </div>
+      <div>
+        <Link href="/pwabadge" className="text-blue-400">
+          PWA Badge
+        </Link>
+      </div>
     </main>
   );
 }
