@@ -1,9 +1,14 @@
 import dayjs from "dayjs";
 import { ImageResponse } from "next/og";
-
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 export const runtime = "edge";
 
 export async function GET() {
+  console.log(dayjs().format("MM/DD HH:mm:ss"));
   return new ImageResponse(
     (
       <div

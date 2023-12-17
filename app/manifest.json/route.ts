@@ -1,11 +1,16 @@
 import dayjs from "dayjs";
 import { NextResponse } from "next/server";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 export const runtime = "edge";
 
 export async function GET() {
   const revision = dayjs().format("YYYYMMDDHHmmss");
-
+  console.log(revision);
   return NextResponse.json({
     id: revision,
     name: "anoChick's playground",

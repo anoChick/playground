@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "anoChick's playground",
-  manifest: "/manifest.json",
+  manifest: `/manifest.json?d=${Date.now()}`,
   description: "anoChickのプレイグラウンドです",
 };
 
