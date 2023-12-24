@@ -34,6 +34,11 @@ export default function Home() {
           PWA Installation
         </Link>
       </div>
+      <div>
+        <Link href="/ac/2023/commmune/24" className="text-blue-400">
+          Breakout
+        </Link>
+      </div>
     </main>
   );
 }
